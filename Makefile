@@ -58,7 +58,8 @@ LDLIBS += -lchord
 export CC CXX FC LD RM AR
 export CFLAGS CXXFLAGS FFLAGS
 export EXAMPLES PROGRAMS
-
+export CC=gcc-5
+emport FC=gfortran
 
 # make shortcuts
 all: gaussian
@@ -105,6 +106,14 @@ $(PYPOLYCHORD_DIR)/_PyPolyChord.so: $(LIB_DIR)/libchord.so $(PYPOLYCHORD_DIR)/sr
 	$(MAKE) -C $(PYPOLYCHORD_DIR) $@
 
 CLEANDIRS = $(POLYCHORD_DIR) $(PYPOLYCHORD_DIR) $(LIKELIHOOD_DIR) $(BIN_DIR) $(LIB_DIR) $(DRIVERS_DIR) 
+
+# Added by JMB
+prefix=/usr/local
+
+install:
+	cp ./lib/libchord.so $(prefix)/lib
+#	cp -r ./PyPolyChord $(prefix)/lib/python2.7/site-packages/
+
 .PHONY: clean veryclean $(addsuffix clean,$(CLEANDIRS)) $(addsuffix veryclean,$(CLEANDIRS)) 
 
 clean: $(addsuffix clean,$(CLEANDIRS))

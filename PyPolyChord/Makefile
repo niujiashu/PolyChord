@@ -1,11 +1,7 @@
-SRC=src
-
-$(PYPOLYCHORD_DIR)/_PyPolyChord.so: $(PYPOLYCHORD_DIR)/src/_PyPolyChord.c
-	$(MAKE) -C $(SRC) $@
+$(PYPOLYCHORD_DIR)/_PyPolyChord.so: _PyPolyChord.c
+	python setup.py build_ext -b $(PYPOLYCHORD_DIR) -t .
 
 clean:
-	$(MAKE) -C $(SRC) clean
+	$(RM) *.o
 
 veryclean:
-	$(RM) _PyPolyChord.so *.pyc
-	$(MAKE) -C $(SRC) veryclean

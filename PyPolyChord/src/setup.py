@@ -1,11 +1,11 @@
 import os
 from distutils.core import setup, Extension
 
-lib_dir = os.environ['LIB_DIR']
+lib_dir = '/usr/local/lib'#os.environ['LIB_DIR']
 
 pypolychord_module = Extension(
         name= '_PyPolyChord',
-        include_dirs = ['src'],
+        include_dirs = ['/usr/local/include'],
         library_dirs = [lib_dir],
         libraries = ['chord','gfortran'],
         sources=['_PyPolyChord.c']
